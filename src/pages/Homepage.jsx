@@ -48,7 +48,7 @@ const Homepage = () => {
 	return (
 		<Layout>
 			<div className='flex justify-center items-center'>
-				<div className='bg-slate-100 h-auto p-6 w-full grid grid-cols-3 gap-4'>
+				<div className='bg-slate-100 h-auto p-6 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
 					{state.products.map((product) => {
 						return <CardProduct key={product.id} img={product.img} price={product.price} name={product.name} />;
 					})}

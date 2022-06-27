@@ -18,7 +18,7 @@
 		@apply bg-gradient-to-t from-slate-300 to-slate-800;
 	}
 	.gradient-b-light {
-		@apply bg-gradient-to-b from-slate-300 to-slate-50;
+		@apply bg-gradient-to-b from-slate-300 to-white;
 	}
 }
 

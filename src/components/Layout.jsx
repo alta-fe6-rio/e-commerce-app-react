@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
 	};
 
 	return (
-		<div className='w-full h-screen relative'>
+		<div className='w-full h-screen'>
 			<Navbar />
 			<button className='fixed top-16 right-3 bg-[#A1BBD0]/50 p-3 rounded-full hover:bg-[#A1BBD0] transition duration-500 text-white hover:text-cyan-300 text-xl'>
 				{theme === 'dark' ? <BsSun onClick={() => handleThemeChange('light')} /> : <BsMoonStars onClick={() => handleThemeChange('dark')} />}

@@ -5,7 +5,7 @@ import { CgProfile } from 'react-icons/cg';
 
 const Navbar = () => {
 	return (
-		<nav className='gradient-t-dark flex py-3 px-6 text-white'>
+		<nav className='gradient-t-dark flex py-3 px-6 text-white sticky'>
 			<div className='font-bold font-inter text-2xl'>
 				<Link to='/'>Brand</Link>
 			</div>

@@ -11,6 +11,7 @@ import NotFound from '../pages/NotFound';
 import Signup from '../pages/Signup';
 import Order from '../pages/Order';
 import Detail from '../pages/Detail';
+import AddProduct from '../pages/AddProduct';
 
 const App = () => {
 	const [theme, setTheme] = useState('light');
@@ -34,6 +35,7 @@ const App = () => {
 					<Route path='/detail' element={<Detail />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/signup' element={<Signup />} />
+					<Route path='/add-product' element={<AddProduct />} />
 					<Route path='*' element={<NotFound />} />
 				</Routes>
 			</BrowserRouter>

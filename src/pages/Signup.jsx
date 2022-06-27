@@ -4,7 +4,7 @@ const Signup = () => {
 	return (
 		<div className='gradient-b-light dark:gradient-b-dark w-full h-screen flex justify-center items-center'>
 			<div className='bg-white max-w-md px-6 py-12 rounded-md'>
-				<form action='post' className='flex flex-col space-y-6'>
+				<form method='post' className='flex flex-col space-y-6'>
 					<input className='input-form' type='text' placeholder='Masukkan Nama' />
 					<input className='input-form' type='email' placeholder='Masukkan Email' />
 					<input className='input-form' type='password' placeholder='Masukkan Password' />
