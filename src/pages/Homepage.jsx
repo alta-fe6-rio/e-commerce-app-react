@@ -1,7 +1,7 @@
 /** @format */
 
-import Layout from '../components/Layout';
 import CardProduct from '../components/CardProduct';
+import Layout from '../components/Layout';
 
 const Homepage = () => {
 	const state = {

@@ -6,7 +6,9 @@ const Signup = () => {
 			<div className='bg-white max-w-md px-6 py-12 rounded-md'>
 				<form method='post' className='flex flex-col space-y-6'>
 					<input className='input-form' type='text' placeholder='Masukkan Nama' />
-					<input className='input-form' type='email' placeholder='Masukkan Email' />
+					<div>
+						<input className='input-form' type='email' placeholder='Masukkan Email' />
+					</div>
 					<input className='input-form' type='password' placeholder='Masukkan Password' />
 					<input className='input-form' type='tel' placeholder='Masukkan No.telp' />
 					<div className='flex'>

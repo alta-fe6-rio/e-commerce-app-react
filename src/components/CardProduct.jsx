@@ -12,7 +12,7 @@ const CardProduct = ({ img, price, name }) => {
 	};
 
 	return (
-		<div className='bg-white border p-4 hover:scale-105 transition ease-linear duration-500 space-y-4'>
+		<div className='bg-white border p-4 transition ease-linear duration-500 space-y-4'>
 			<div className='flex justify-center'>
 				<img src={img} alt={img} width={300} height={350} />
 			</div>
