@@ -5,7 +5,9 @@ import Layout from '../components/Layout';
 const Detail = () => {
 	return (
 		<Layout>
-			<div>Detail</div>
+			<div className='flex justify-center bg-white w-full h-screen text-black text-4xl'>
+				ProductDetasdasdasdasdasdsaail
+			</div>
 		</Layout>
 	);
 };
