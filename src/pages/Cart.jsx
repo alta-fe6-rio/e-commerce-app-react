@@ -37,6 +37,9 @@ const Cart = () => {
 	};
 
 
+
+
+
 	return (
 		<Layout>
 			<div className='w-full'>

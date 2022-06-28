@@ -46,7 +46,7 @@ const CartProduct = ({ item, img, price, name, total, qty }) => {
                         </div>
                     </div>
                     <h1 className='font-bold'>{newTotal}</h1>
-                    <FaRegTrashAlt className="text-gray-500" />
+                    <FaRegTrashAlt className="text-gray-500 ml-auto" />
                 </div>
             </div>
             <div>
