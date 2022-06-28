@@ -45,7 +45,7 @@ const Cart = () => {
 			<div className='w-full'>
 				<div>
 					{state.carts.map((cart) => {
-						return <CartProduct key={cart.id} item={cart.item} img={cart.img} price={cart.price} name={cart.name} total={cart.total} qty={cart.qty} />;
+						return <CartProduct key={cart.id} item={cart.item} img={cart.img} price={cart.price} name={cart.name} total={cart.total} qty={cart.qty} />
 					})}
 				</div>
 				<div className='flex justify-center'>
