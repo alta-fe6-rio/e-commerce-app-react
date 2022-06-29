@@ -15,7 +15,11 @@ const Homepage = () => {
 	const getProduct = () => {
 		axios({
 			method: 'get',
-			url: 'https://virtserver.swaggerhub.com/MULYANURDIN10_1/Ecommerce/1.0.2/products',
+			url: 'http://34.68.188.197:80/products',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + localStorage.getItem('token'),
+			},
 		})
 			.then((res) => {
 				console.log(res.data);
