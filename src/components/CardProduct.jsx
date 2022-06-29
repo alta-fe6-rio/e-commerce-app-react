@@ -1,15 +1,20 @@
 /** @format */
 
 import { FaCartPlus } from 'react-icons/fa';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 const CardProduct = ({ img, price, name, id }) => {
-	// const handleAddCart = () => {
-	// 	Swal.fire({
-	// 		icon: 'success',
-	// 		title: 'Added to Cart',
-	// 	});
-	// };
+	const checkUser = () => {
+		localStorage.getItem('token')
+			? Swal.fire({
+					icon: 'success',
+					title: 'Added to Cart',
+			  })
+			: Swal.fire({
+					icon: 'info',
+					title: 'Please Login First',
+			  });
+	};
 
 	return (
 		<div className='bg-white border p-4 transition ease-linear duration-500 space-y-4'>
@@ -20,7 +25,7 @@ const CardProduct = ({ img, price, name, id }) => {
 				<h3 className='cursor-pointer'>{name}</h3>
 				<h1 className='font-bold'>{price}</h1>
 			</div>
-			<button className='flex items-center space-x-4 justify-center w-full gradient-b-dark py-2 rounded-md text-white'>
+			<button className='flex items-center space-x-4 justify-center w-full gradient-b-dark py-2 rounded-md text-white' onClick={() => checkUser()}>
 				<span>
 					<FaCartPlus />
 				</span>

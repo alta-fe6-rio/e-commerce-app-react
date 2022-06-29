@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { Fragment, useContext } from 'react';
 
 import { ThemeContext } from '../utils/context';
+import Swal from 'sweetalert2';
 
 function classNames(...classes) {
 	return classes.filter(Boolean).join(' ');
@@ -20,6 +21,15 @@ export default function Example() {
 	const handleThemeChange = (mode) => {
 		setTheme(mode);
 		localStorage.setItem('theme', mode);
+	};
+
+	const handleLogout = () => {
+		localStorage.removeItem('token');
+		window.location.href = '/';
+		Swal.fire({
+			icon: 'success',
+			title: 'Logged out',
+		});
 	};
 	return (
 		<Disclosure as='nav' className='gradient-t-dark'>
@@ -58,7 +68,7 @@ export default function Example() {
 									</Menu.Item>
 									<Menu.Item>
 										{({ active }) => (
-											<Link to='/checkout' className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+											<Link to='/history' className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
 												Checkout
 											</Link>
 										)}
@@ -111,7 +121,37 @@ export default function Example() {
 											</Link>
 										)}
 									</Menu.Item>
-									<Menu.Item>{({ active }) => <div className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 cursor-pointer')}>Sign out</div>}</Menu.Item>
+									{localStorage.getItem('token') ? (
+										<div className='hidden'></div>
+									) : (
+										<Menu.Item>
+											{({ active }) => (
+												<Link to='/signup' className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+													Sign Up
+												</Link>
+											)}
+										</Menu.Item>
+									)}
+									{localStorage.getItem('token') ? (
+										<div className='hidden'></div>
+									) : (
+										<Menu.Item>
+											{({ active }) => (
+												<Link to='/login' className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+													Login
+												</Link>
+											)}
+										</Menu.Item>
+									)}
+									{localStorage.getItem('token') && (
+										<Menu.Item>
+											{({ active }) => (
+												<Link to='/' onClick={() => handleLogout()} className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+													Sign Out
+												</Link>
+											)}
+										</Menu.Item>
+									)}
 								</Menu.Items>
 							</Transition>
 						</Menu>

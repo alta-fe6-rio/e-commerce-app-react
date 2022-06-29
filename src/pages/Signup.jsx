@@ -10,36 +10,18 @@ const Signup = () => {
 	const [password, setPassword] = useState('');
 	const [phoneNumber, setPhoneNumber] = useState('');
 	const [address, setAddress] = useState('');
+	const [date, setDate] = useState();
 
-	const handleName = (e) => {
-		setName(e.target.value);
-	};
-
-	const handleEmail = (e) => {
-		setEmail(e.target.value);
-	};
-
-	const handlePassword = (e) => {
-		setPassword(e.target.value);
-	};
-
-	const handlePhoneNumber = (e) => {
-		setPhoneNumber(e.target.value);
-	};
-
-	const handleAdress = (e) => {
-		setAddress(e.target.value);
-	};
-
-	const addUser = () => {
+	const signUp = () => {
 		axios({
 			method: 'post',
-			url: 'https://virtserver.swaggerhub.com/MULYANURDIN10_1/Ecommerce/1.0.2/users/',
+			url: 'http://34.68.188.197:80/users',
 			data: {
 				name: name,
 				email: email,
 				password: password,
-				phoneNumber: phoneNumber,
+				phone: phoneNumber,
+				birth: date,
 				address: address,
 			},
 			headers: {
@@ -55,7 +37,7 @@ const Signup = () => {
 			.catch((err) => {
 				Swal.fire({
 					icon: 'error',
-					title: 'failed created account',
+					title: `${err.response.data.message}`,
 				});
 			});
 	};
@@ -67,19 +49,20 @@ const Signup = () => {
 			</div>
 			<div className='bg-white max-w-md px-6 py-12 rounded-md'>
 				<form className='flex flex-col space-y-6'>
-					<input className='input-form' type='text' placeholder='Masukkan Nama' name='name' onChange={handleName} />
+					<input className='input-form' type='text' placeholder='Masukkan Nama' name='name' onChange={(e) => setName(e.target.value)} />
 					<div>
-						<input className='input-form' type='email' placeholder='Masukkan Email' name='email' onChange={handleEmail} />
+						<input className='input-form' type='email' placeholder='Masukkan Email' name='email' onChange={(e) => setEmail(e.target.value)} />
 					</div>
-					<input className='input-form' type='password' placeholder='Masukkan Password' name='password' onChange={handlePassword} />
-					<input className='input-form' type='tel' placeholder='Masukkan No.telp' name='phone' onChange={handlePhoneNumber} />
-					<input className='input-form' type='text' placeholder='Masukkan Alamat' name='adress' onChange={handleAdress} />
+					<input className='input-form' type='password' placeholder='Masukkan Password' name='password' onChange={(e) => setPassword(e.target.value)} />
+					<input className='input-form' type='tel' placeholder='Masukkan No.telp' name='phone' onChange={(e) => setPhoneNumber(e.target.value)} />
+					<input className='input-form' type='date' name='date' onChange={(e) => setDate(e.target.value)} />
+					<input className='input-form' type='text' placeholder='Masukkan Alamat' name='adress' onChange={(e) => setAddress(e.target.value)} />
 					<div className='flex'>
 						<input type='checkbox' className='mt-2' />
 						<span className='pl-3'>dengan anda klik setuju, anda telah menyetujui syarat dan ketentuan yang berlaku.</span>
 					</div>
 				</form>
-				<button className='button-form gradient-b-dark mt-4' onClick={() => addUser()}>
+				<button className='button-form gradient-b-dark mt-4' onClick={() => signUp()}>
 					Sign Up
 				</button>
 			</div>
