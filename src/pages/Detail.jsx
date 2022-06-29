@@ -16,7 +16,7 @@ const Detail = () => {
 
 	return (
 		<Layout>
-			<div className='bg-white w-[95%] m-auto h-full'>
+			<div className='bg-white lg:w-[95%] sm:w-full m-auto h-full'>
 				<DetailProduct key={state.id} img={state.img} price={state.price} name={state.name} desc={state.desc} />
 			</div>
 		</Layout >

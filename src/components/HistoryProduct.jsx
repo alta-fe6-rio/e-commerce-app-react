@@ -3,10 +3,10 @@
 const HistoryProduct = ({ item, img, price, name, total, qty }) => {
     return (
         <div>
-            <div className="ml-44 pt-10">
+            <div className="lg:ml-44 md:ml-36 ml-10 pt-10">
                 <h1>{item}</h1>
             </div>
-            <div className='flex mx-48 my-8'>
+            <div className='flex lg:mx-48 md:mx-36 mx-10 my-8'>
                 <div className=''>
                     <img src={img} alt={img} width={250} height={300} />
                 </div>

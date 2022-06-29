@@ -39,13 +39,11 @@ const History = () => {
 
     return (
         <Layout>
-            <div className='bg-white w-[95%] m-auto h-full'>
-                <div className='w-full'>
-                    <div>
-                        {state.carts.map((cart) => {
-                            return <HistoryProduct key={cart.id} item={cart.item} img={cart.img} price={cart.price} name={cart.name} total={cart.total} qty={cart.qty} />
-                        })}
-                    </div>
+            <div className='bg-white lg:w-[95%] md:w-[95%] sm:w-[100%] m-auto h-full'>
+                <div>
+                    {state.carts.map((cart) => {
+                        return <HistoryProduct key={cart.id} item={cart.item} img={cart.img} price={cart.price} name={cart.name} total={cart.total} qty={cart.qty} />
+                    })}
                 </div>
             </div>
         </Layout>

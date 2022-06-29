@@ -19,19 +19,19 @@ const CartProduct = ({ item, img, price, name, total, qty }) => {
 
 
     return (
-        <div>
-            <div className="ml-44">
+        <div className="w-full">
+            <div className="lg:ml-44 md:ml-12">
                 <h1>{item}</h1>
             </div>
-            <div className='flex mx-48 my-8'>
+            <div className='flex lg:mx-48 md:mx-30 sm:mx-2 my-8'>
                 <div className=''>
                     <img src={img} alt={img} width={250} height={300} />
                 </div>
-                <div className="ml-12 mt-5">
+                <div className="lg:ml-12 md:ml-12 ml-2 lg:mt-5 md:mt-4 mt-2">
                     <h3 className='font-bold mb-1'>{name}</h3>
                     <h3>{price}</h3>
                 </div>
-                <div className="ml-auto mt-5 flex flex-col justify-evenly">
+                <div className="ml-auto flex flex-col justify-evenly ">
                     <div className="flex items-center px-2 bg-white rounded-lg border-2 border-gray-300">
                         <div>
                             {newQty}
