@@ -1,52 +1,54 @@
 
-
+import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import CartProduct from '../components/CartProduct';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Cart = () => {
-	const state = {
-		carts: [
-			{
-				id: 1,
-				item: 'Product 1',
-				img: 'https://media.istockphoto.com/photos/bigeyed-naughty-obese-cat-behind-the-desk-with-red-hat-grey-color-picture-id1199279669?b=1&k=20&m=1199279669&s=170667a&w=0&h=munUsqGIlDAmKK0ouS12nHCuzDdoDfvNalw_hHvh6Ls=',
-				name: 'Product Name',
-				price: 1000000,
-				total: 2000000,
-				qty: 2,
-			},
-			{
-				id: 2,
-				item: 'Product 2',
-				img: 'https://media.istockphoto.com/photos/bigeyed-naughty-obese-cat-behind-the-desk-with-red-hat-grey-color-picture-id1199279669?b=1&k=20&m=1199279669&s=170667a&w=0&h=munUsqGIlDAmKK0ouS12nHCuzDdoDfvNalw_hHvh6Ls=',
-				name: 'Product Name',
-				price: 1000000,
-				total: 1000000,
-				qty: 1,
-			},
-			{
-				id: 3,
-				item: 'Product 3',
-				img: 'https://media.istockphoto.com/photos/bigeyed-naughty-obese-cat-behind-the-desk-with-red-hat-grey-color-picture-id1199279669?b=1&k=20&m=1199279669&s=170667a&w=0&h=munUsqGIlDAmKK0ouS12nHCuzDdoDfvNalw_hHvh6Ls=',
-				name: 'Product Name',
-				price: 1000000,
-				total: 1000000,
-				qty: 1,
-			},
-		],
+	const [carts, setCarts] = useState([]);
+	const checkUser = () => {
+		localStorage.getItem('token')
+			? Swal.fire({
+				icon: 'success',
+				title: 'Checkout Success',
+			})
+			: Swal.fire({
+				icon: 'info',
+				title: 'No Product on Cart',
+			});
 	};
 
+	useEffect(() => {
+		getCart();
+	}, []);
 
-
+	const getCart = () => {
+		axios({
+			method: 'get',
+			url: 'http://34.68.188.197:80/carts',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + localStorage.getItem('token'),
+			},
+		})
+			.then((res) => {
+				console.log(res.data.data);
+				setCarts(res.data.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 
 
 	return (
 		<Layout>
 			<div className='w-full'>
 				<div>
-					{state.carts.map((cart) => {
-						return <CartProduct key={cart.id} item={cart.item} img={cart.img} price={cart.price} name={cart.name} total={cart.total} qty={cart.qty} />
+					{carts.map((cart) => {
+						return <CartProduct key={cart.id} qty={cart.qty} item={cart.item} img={cart.img} price={cart.price} name={cart.name} total={cart.total} />
 					})}
 				</div>
 				<div className='flex justify-center'>
@@ -58,7 +60,7 @@ const Cart = () => {
 							</div>
 							<div className='ml-auto lg:mt-10 md:mt-10 mt-2 lg:mb-0 md:mb-0 mb-5 lg:p-0 md:p-0 p-5'>
 								<Link to='/order'>
-									<button className='bg-gradient-to-b from-slate-300 to-slate-800 w-56 h-12 text-white border-1 border-white shadow-md shadow-gray-500 rounded-lg'>
+									<button onClick={() => checkUser()} className='bg-gradient-to-b from-slate-300 to-slate-800 w-56 h-12 text-white border-1 border-white shadow-md shadow-gray-500 rounded-lg'>
 										<p>Checkout</p>
 									</button>
 								</Link>

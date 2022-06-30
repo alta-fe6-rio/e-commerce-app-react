@@ -41,7 +41,7 @@ const App = () => {
 					<Route path='/edit-product' element={<EditProduct />} />
 					<Route path='/signup' element={<Signup />} />
 					<Route path='/login' element={<Login />} />
-					<Route path='/profile' element={<Profile />} />
+					<Route path='/profile/:user_id' element={<Profile />} />
 					<Route path='*' element={<NotFound />} />
 				</Routes>
 			</BrowserRouter>
