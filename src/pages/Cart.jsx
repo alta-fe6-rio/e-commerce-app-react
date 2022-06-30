@@ -42,13 +42,39 @@ const Cart = () => {
 			});
 	};
 
+	const handleDelete = (id) => {
+		axios({
+			method: "delete",
+			url: `http://34.68.188.197:80/carts/${id}`,
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "Bearer " + localStorage.getItem("token"),
+			},
+		})
+			.then((res) => {
+				console.log(res.data);
+				getCart();
+				Swal.fire({
+					icon: "success",
+					title: "Delete Success",
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+				Swal.fire({
+					icon: "error",
+					title: "Delete Failed",
+				});
+			});
+	}
+
 
 	return (
 		<Layout>
 			<div className='w-full'>
 				<div>
 					{carts.map((cart) => {
-						return <CartProduct key={cart.id} qty={cart.qty} item={cart.item} img={cart.img} price={cart.price} name={cart.name} total={cart.total} />
+						return <CartProduct key={cart.products.id} qty={cart.qty} desc={cart.products.desc} image={cart.products.image} price={cart.products.price} name={cart.products.name} onClick={() => handleDelete(cart.id)} />
 					})}
 				</div>
 				<div className='flex justify-center'>

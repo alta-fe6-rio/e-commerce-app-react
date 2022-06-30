@@ -9,25 +9,24 @@ const DetailProduct = ({ img, price, name, desc }) => {
         })
     }
 
-
     return (
         <div className='w-full h-full'>
             <div className='mt-6'>
-                <div className='lg:flex-row md:flex-col flex flex-col lg:py-32 md:py-20 py-10 lg:mx-12 md:mx-10 mx-2'>
-                    <div className=''>
-                        <img src={img} alt={img} width={800} height={850} />
+                <div className='lg:flex-row md:flex-col flex flex-col lg:py-32 md:py-20 py-10 lg:mx-28 md:mx-24 mx-5'>
+                    <div className='flex md:justify-center sm:justify-center'>
+                        <img src={img} alt={img} width={550} height={600} />
                     </div>
-                    <div className='lg:ml-16 md:ml-0 ml-0 grid lg:grid-cols-1 md:grid-cols-1 grid-cols-1 md:mt-8 mt-5'>
-                        <h3 className='font-bold text-xl'>{name}</h3>
-                        <h3 className='font-bold text-xl'>{price}</h3>
-                        <button className='flex items-center lg:mt-10 md:mt-8 mt-3 justify-center w-1/2 gradient-b-dark py-2 rounded-md text-white' onClick={() => handleAddCart()}>
+                    <div className='lg:w-[50%] md:w-[90%] w-[90%] lg:ml-14 md:ml-18 ml-0 lg:mt-2 md:mt-8 mt-5'>
+                        <h3 className='font-bold lg:text-2xl md:text-xl text-lg mb-2'>{name}</h3>
+                        <h3 className='font-semibold lg:text-2xl md:text-xl text-lg'>{price}</h3>
+                        <button className='flex items-center lg:mt-10 md:mt-8 mt-3 mb-10 justify-center w-1/2 gradient-b-dark py-2 rounded-md text-white' onClick={() => handleAddCart()}>
                             <span>
                                 <FaCartPlus />
                             </span>
                             <span>Add to Cart</span>
                         </button>
-                        <p className='font-semibold text-lg mt-5 mb-2'>Product Description</p>
-                        <h3>{desc}</h3>
+                        <p className='font-semibold lg:text-lg md:text-lg text-md mt-5'>Product Description</p>
+                        <h3 className='ml-2'>{desc}</h3>
                     </div>
                 </div>
             </div>

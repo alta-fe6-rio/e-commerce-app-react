@@ -4,19 +4,22 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { MdArrowDropUp } from "react-icons/md";
 import { MdArrowDropDown } from "react-icons/md";
 
-const CartProduct = ({ item, img, price, name, total, qty }) => {
-    const [newQty, setNewQty] = useState(qty);
-    const [newTotal, setNewTotal] = useState(total);
+
+const CartProduct = ({ item, image, price, name, total, qty, onClick }) => {
+    const numQty = +qty;
+    const numTotal = +total;
+    const numPrice = +price;
+    const [newQty, setNewQty] = useState(numQty);
+    const [newTotal, setNewTotal] = useState(numTotal);
 
     const handlerAddQty = () => {
         setNewQty(newQty + 1)
-        setNewTotal(newTotal + price)
+        setNewTotal(newTotal + numPrice)
     }
     const handlerMinQty = () => {
         setNewQty(newQty - 1)
-        setNewTotal(newTotal - price)
+        setNewTotal(newTotal - numPrice)
     }
-
 
     return (
         <div className="w-full">
@@ -25,16 +28,17 @@ const CartProduct = ({ item, img, price, name, total, qty }) => {
             </div>
             <div className='flex lg:mx-48 md:mx-30 sm:mx-2 my-8'>
                 <div className=''>
-                    <img src={img} alt={img} width={250} height={300} />
+                    <img src={image} alt={image} width={250} height={300} />
                 </div>
                 <div className="lg:ml-12 md:ml-12 ml-2 lg:mt-5 md:mt-4 mt-2">
                     <h3 className='font-bold mb-1'>{name}</h3>
-                    <h3>{price}</h3>
+                    <h3>{numPrice}</h3>
                 </div>
                 <div className="ml-auto flex flex-col justify-evenly ">
                     <div className="flex items-center px-2 bg-white rounded-lg border-2 border-gray-300">
                         <div>
                             {newQty}
+                            {console.log(newQty)}
                         </div>
                         <div className="flex flex-col ml-auto py-1">
                             <button onClick={() => handlerAddQty()}>
@@ -45,8 +49,9 @@ const CartProduct = ({ item, img, price, name, total, qty }) => {
                             </button>
                         </div>
                     </div>
-                    <h1 className='font-bold'>{newTotal}</h1>
-                    <FaRegTrashAlt className="text-gray-500 ml-auto" />
+                    <h1 className='font-bold'>{total}</h1>
+                    {console.log(total)}
+                    <FaRegTrashAlt onClick={() => onClick()} className="text-gray-500 ml-auto" />
                 </div>
             </div>
             <div>
