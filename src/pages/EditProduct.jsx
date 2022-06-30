@@ -1,30 +1,73 @@
 /** @format */
 
+import axios from 'axios';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import Layout from '../components/Layout';
 
 const EditProduct = () => {
+	const params = useParams();
+	const [products, setProducts] = useState({});
+	const [qty, setQty] = useState();
+	const [category, setCategory] = useState('');
+	const [price, setPrice] = useState('');
+	const [desc, setDesc] = useState('');
+	const [img, setImg] = useState('');
+
+	const editProduct = () => {
+		const { id } = params;
+		axios({
+			method: 'put',
+			url: `http://34.68.188.197:80/products/${id}`,
+			data: {
+				image: img,
+				name: products,
+				qty: qty,
+				price: price,
+				desc: desc,
+				categorys_id: +category,
+			},
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + localStorage.getItem('token'),
+			},
+		})
+			.then((res) => {
+				console.log(res);
+				Swal.fire({
+					icon: 'success',
+					title: 'sucess add product',
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+				Swal.fire({
+					icon: 'error',
+					title: 'failed add product',
+				});
+			});
+	};
+
 	return (
 		<Layout>
-			<div className='bg-white p-4'>
-				<div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-					<div>
-						<label for='image-upload'></label>
-						<input type='file' multiple name='image-upload' id='img-upload' />
-					</div>
-					<div className='col-span-2'>
-						<form method='post' className='space-y-4'>
-							<input type='text' placeholder='Product Name' className='input-form' />
-							<select className='input-form'>
-								<option value='0'>Select</option>
-								<option value='1'>Sepatu Casual</option>
-								<option value='2'>Sepatu Sport</option>
-							</select>
-							<input type='text' placeholder='Price' className='input-form' />
-							<input type='text' placeholder='Adress' className='input-form' />
-							<textarea rows='7' placeholder='Edit your product detail' className='input-form resize-none'></textarea>
-							<button className='button-form gradient-b-dark'>Confirm</button>
-						</form>
-					</div>
+			<div className='flex justify-center items-center'>
+				<div className='bg-white p-4 max-w-4xl'>
+					<form className='space-y-4'>
+						<input type='text' name='image' placeholder='Add url img' className='input-form' onChange={(e) => setImg(e.target.value)} />
+						<input type='text' placeholder='Product Name' name='name' className='input-form' onChange={(e) => setProducts(e.target.value)} />
+						<input type='text' placeholder='Qty' name='qty' className='input-form' onChange={(e) => setQty(e.target.value)} />
+						<select name='category' className='input-form peer' onChange={(e) => setCategory(e.target.value)}>
+							<option value='0'>Select</option>
+							<option value='1'>Sepatu</option>
+							<option value='2'>T-shirt</option>
+						</select>
+						<input type='text' placeholder='Price' name='price' className='input-form' onChange={(e) => setPrice(e.target.value)} />
+						<textarea rows='7' placeholder='Add description of your product' name='desc' className='input-form resize-none' onChange={(e) => setDesc(e.target.value)} />
+					</form>
+					<button className='button-form gradient-b-dark' onClick={() => editProduct()}>
+						Confirm
+					</button>
 				</div>
 			</div>
 		</Layout>

@@ -3,9 +3,11 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Login = () => {
+	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -28,6 +30,7 @@ const Login = () => {
 					icon: 'success',
 					title: 'success logged in',
 				});
+				navigate('/');
 			})
 			.catch((err) => {
 				Swal.fire({

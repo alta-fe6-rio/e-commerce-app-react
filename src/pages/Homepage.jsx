@@ -3,13 +3,19 @@
 import { useEffect, useState } from 'react';
 import CardProduct from '../components/CardProduct';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 import Layout from '../components/Layout';
 
 const Homepage = () => {
+	const navigate = useNavigate();
 	const [products, setProducts] = useState([]);
 
 	useEffect(() => {
 		getProduct();
+		if (!localStorage.getItem('token')) {
+			navigate('/login');
+		}
 	}, []);
 
 	const getProduct = () => {
@@ -23,7 +29,7 @@ const Homepage = () => {
 		})
 			.then((res) => {
 				console.log(res.data);
-				setProducts(res.data);
+				setProducts(res.data.data);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -34,7 +40,9 @@ const Homepage = () => {
 		<Layout>
 			<div className='flex justify-center items-center'>
 				<div className='bg-slate-100 h-auto p-6 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
-					<CardProduct key={products.users_id} img={products.image} price={products.price} name={products.name} />
+					{products.map((product) => {
+						return <CardProduct key={product.id} img={product.image} price={product.price} name={product.name} id={product.id} onClickItem={() => navigate(`detail/${product.id}`)} />;
+					})}
 				</div>
 			</div>
 		</Layout>

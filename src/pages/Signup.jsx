@@ -2,9 +2,11 @@
 
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Signup = () => {
+	const navigate = useNavigate();
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -33,6 +35,7 @@ const Signup = () => {
 					icon: 'success',
 					title: 'sucess created account',
 				});
+				navigate('/login');
 			})
 			.catch((err) => {
 				Swal.fire({
