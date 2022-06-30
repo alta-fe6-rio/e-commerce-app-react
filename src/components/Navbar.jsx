@@ -121,37 +121,13 @@ export default function Example() {
 											</Link>
 										)}
 									</Menu.Item>
-									{localStorage.getItem('token') ? (
-										<div className='hidden'></div>
-									) : (
-										<Menu.Item>
-											{({ active }) => (
-												<Link to='/signup' className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
-													Sign Up
-												</Link>
-											)}
-										</Menu.Item>
-									)}
-									{localStorage.getItem('token') ? (
-										<div className='hidden'></div>
-									) : (
-										<Menu.Item>
-											{({ active }) => (
-												<Link to='/login' className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
-													Login
-												</Link>
-											)}
-										</Menu.Item>
-									)}
-									{localStorage.getItem('token') && (
-										<Menu.Item>
-											{({ active }) => (
-												<Link to='/' onClick={() => handleLogout()} className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
-													Sign Out
-												</Link>
-											)}
-										</Menu.Item>
-									)}
+									<Menu.Item>
+										{({ active }) => (
+											<Link to='/' onClick={() => handleLogout()} className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+												Sign Out
+											</Link>
+										)}
+									</Menu.Item>
 								</Menu.Items>
 							</Transition>
 						</Menu>

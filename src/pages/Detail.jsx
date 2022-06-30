@@ -2,25 +2,49 @@
 
 import Layout from '../components/Layout';
 import DetailProduct from '../components/DetailProduct';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const Detail = () => {
-	const state = {
-		id: 1,
-		img: 'https://media.istockphoto.com/photos/bigeyed-naughty-obese-cat-behind-the-desk-with-red-hat-grey-color-picture-id1199279669?b=1&k=20&m=1199279669&s=170667a&w=0&h=munUsqGIlDAmKK0ouS12nHCuzDdoDfvNalw_hHvh6Ls=',
-		name: 'Product Name',
-		price: 'Rp. 1000.000',
-		desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui ab labore autem esse perferendis, nemo id ut sint voluptatem libero in quas quaerat voluptas reprehenderit maxime, dolor temporibus sunt explicabo!'
+	const params = useParams();
+	const [product, setProducts] = useState([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		getDetail();
+	}, []);
+
+	const getDetail = () => {
+		const { detail_id } = params;
+		axios({
+			method: 'get',
+			url: `http://34.68.188.197:80/products/${detail_id}`,
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + localStorage.getItem('token'),
+			},
+		})
+			.then((res) => {
+				setProducts(res.data.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			})
+			.finally(() => setLoading(false));
+	};
+
+	if (loading) {
+		return <div className='h-screen flex justify-center items-center text-3xl font-courgette font-bold'>Loading...</div>;
+	} else {
+		return (
+			<Layout>
+				<div className='bg-white lg:w-[95%] sm:w-full m-auto h-full'>
+					<DetailProduct key={product.id} img={product.image} price={product.price} name={product.name} desc={product.desc} />
+				</div>
+			</Layout>
+		);
 	}
-
-
-
-	return (
-		<Layout>
-			<div className='bg-white lg:w-[95%] sm:w-full m-auto h-full'>
-				<DetailProduct key={state.id} img={state.img} price={state.price} name={state.name} desc={state.desc} />
-			</div>
-		</Layout >
-	);
 };
 
 export default Detail;
