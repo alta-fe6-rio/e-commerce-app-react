@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { ThemeContext } from '../utils/context';
 import EditProduct from '../pages/EditProduct';
+import UserProduct from '../pages/UserProduct';
 import AddProduct from '../pages/AddProduct';
 import Homepage from '../pages/Homepage';
 import NotFound from '../pages/NotFound';
@@ -38,7 +39,8 @@ const App = () => {
 					<Route path='/order' element={<Order />} />
 					<Route path='/history' element={<History />} />
 					<Route path='/add-product' element={<AddProduct />} />
-					<Route path='/edit-product' element={<EditProduct />} />
+					<Route path='/edit-product/:product_id' element={<EditProduct />} />
+					<Route path='/my-product' element={<UserProduct />} />
 					<Route path='/signup' element={<Signup />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/profile/:user_id' element={<Profile />} />

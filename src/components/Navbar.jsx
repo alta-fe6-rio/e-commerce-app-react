@@ -87,6 +87,13 @@ export default function Example() {
 											</Link>
 										)}
 									</Menu.Item>
+									<Menu.Item>
+										{({ active }) => (
+											<Link to='/my-product' className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+												My Product
+											</Link>
+										)}
+									</Menu.Item>
 								</Menu.Items>
 							</Transition>
 						</Menu>
@@ -111,13 +118,6 @@ export default function Example() {
 										{({ active }) => (
 											<Link to='/profile' className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
 												Profile
-											</Link>
-										)}
-									</Menu.Item>
-									<Menu.Item>
-										{({ active }) => (
-											<Link to='/add-product' className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
-												Add Product
 											</Link>
 										)}
 									</Menu.Item>
