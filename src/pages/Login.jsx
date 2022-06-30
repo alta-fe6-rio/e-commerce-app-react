@@ -24,7 +24,7 @@ const Login = () => {
 			},
 		})
 			.then((res) => {
-				console.log(res);
+				console.log('login', res);
 				localStorage.setItem('token', res.data.token);
 				Swal.fire({
 					icon: 'success',
