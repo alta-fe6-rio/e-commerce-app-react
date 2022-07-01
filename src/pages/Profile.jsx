@@ -17,6 +17,7 @@ const Profile = () => {
 	const params = useParams();
 	const [name, setName] = useState();
 	const [email, setEmail] = useState();
+	const [password, setPassword] = useState();
 	const [phone, setPhone] = useState();
 	const [address, setAddress] = useState();
 	const [profile, setProfile] = useState({});
@@ -56,6 +57,7 @@ const Profile = () => {
 			data: {
 				name: name,
 				email: email,
+				password: password,
 				phone: phone,
 				address: address,
 			},
@@ -78,6 +80,34 @@ const Profile = () => {
 				Swal.fire({
 					icon: 'error',
 					title: 'failed update',
+				});
+			});
+	};
+
+	const handleDelete = () => {
+		const { user_id } = params;
+		axios({
+			method: 'delete',
+			url: `http://34.68.188.197:80/users/${user_id}`,
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + localStorage.getItem('token'),
+			},
+		})
+			.then((res) => {
+				console.log(res);
+				localStorage.removeItem('token');
+				Swal.fire({
+					icon: 'success',
+					title: 'delete profile sucess',
+				});
+				window.location.href = '/';
+			})
+			.catch((err) => {
+				console.log(err);
+				Swal.fire({
+					icon: 'error',
+					title: 'failed delete',
 				});
 			});
 	};
@@ -106,12 +136,16 @@ const Profile = () => {
 								<form className='flex flex-col space-y-4 lg:ml-12 md:ml-12 ml-2'>
 									<input className='input-form' type='name' placeholder={profile.name} onChange={(e) => setName(e.target.value)} />
 									<input className='input-form' type='email' placeholder={profile.email} onChange={(e) => setEmail(e.target.value)} />
+									<input className='input-form' type='password' placeholder='password' onChange={(e) => setPassword(e.target.value)} />
 									<input className='input-form' type='phone' placeholder={profile.phone} onChange={(e) => setPhone(e.target.value)} />
 									<input className='input-form' type='address' placeholder={profile.address} onChange={(e) => setAddress(e.target.value)} />
-									<button className='button-form w-1/2 gradient-b-dark lg:m-0 md:m-0 m-auto' onClick={() => handleUpdate()}>
-										Confirm
-									</button>
 								</form>
+								<button className='button-form w-1/2 gradient-b-dark lg:m-0 md:m-0 m-auto' onClick={() => handleUpdate()}>
+									Confirm
+								</button>
+								<button className='button-form w-1/2 gradient-b-dark lg:m-0 md:m-0 m-auto' onClick={() => handleDelete()}>
+									Delete
+								</button>
 							</div>
 						</div>
 					</div>
