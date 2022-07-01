@@ -24,12 +24,12 @@ The purpose we built this project to compelete bootcamp task.
 
 ### Task list
 
-- [ ] User can create an account
-- [ ] User can login
-- [ ] User can see the list of products
-- [ ] User can create, edit, delete only for self products
-- [ ] User can see the list self product and other products
-- [ ] User can add product to cart
+- [x] User can create an account
+- [x] User can login
+- [x] User can see the list of products
+- [x] User can create, edit, delete only for self products
+- [x] User can see the list self product and other products
+- [x] User can add product to cart
 - [ ] User can order the product
 - [ ] User can view the history order and cancel order
 

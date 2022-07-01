@@ -1,4 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/**
+ * /* eslint-disable react-hooks/exhaustive-deps
+ *
+ * @format
+ */
+
 /** @format */
 
 import { useState, useEffect } from 'react';
@@ -81,12 +86,12 @@ const Profile = () => {
 		<Layout>
 			<div className='gradient-b-light dark:gradient-b-dark w-full h-screen flex justify-center items-center'>
 				<div className='bg-white lg:w-[80%] md:w-full w-full lg:h-[90%] md:h-[90%] h-full lg:px-14 md:px-0 px-0 rounded-lg shadow-lg shadow-gray-400/50'>
-					<div className=" flex flex-col justify-center">
+					<div className=' flex flex-col justify-center'>
 						<div className='mb-5 mt-6'>
-							<div className="text-2xl font-bold ml-12 mb-1">Profile</div>
+							<div className='text-2xl font-bold ml-12 mb-1'>Profile</div>
 							<p className='ml-12 text-black/60'>Manage Your Information</p>
 						</div>
-						<hr className="h-1 bg-black/5 mb-12" />
+						<hr className='h-1 bg-black/5 mb-12' />
 						<div className='flex lg:flex-row md:flex-row flex-col lg:mx-16 md:mx-16 mx-6'>
 							<div className='lg:w-[40%] md:w-[40%] w-full flex flex-col lg:items-baseline md:items-baseline items-center lg:mt-10 md:mt-8 mt-3 mb-6'>
 								<div className=' md:ml-14 '>
@@ -103,7 +108,9 @@ const Profile = () => {
 									<input className='input-form' type='email' placeholder={profile.email} onChange={(e) => setEmail(e.target.value)} />
 									<input className='input-form' type='phone' placeholder={profile.phone} onChange={(e) => setPhone(e.target.value)} />
 									<input className='input-form' type='address' placeholder={profile.address} onChange={(e) => setAddress(e.target.value)} />
-									<button className='button-form w-1/2 gradient-b-dark lg:m-0 md:m-0 m-auto' onClick={() => handleUpdate()}>Confirm</button>
+									<button className='button-form w-1/2 gradient-b-dark lg:m-0 md:m-0 m-auto' onClick={() => handleUpdate()}>
+										Confirm
+									</button>
 								</form>
 							</div>
 						</div>
